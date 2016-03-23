@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block body %}
+  <ul class=students>
+      {% for student in students %}
+        <h2>{{ student.first_name}} {{student.second_name}} {{student.third_name}}</h2>
+        {{ student.sex}} {{ student.birthday}} {{ student.about_me }}
+      {% endfor %}
+  </ul>
+{% endblock %}

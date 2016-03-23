@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="container">
+  <div class="row">
+	<div class="form col-md-2 col-md-offset-1">
+		<img src="http://dummyimage.com/300x400/7d7d7d/fff.jpg">
+	</div>
+	<div class="form col-md-6 col-md-offset-3">
+        {{ data }}
+		<div class="panel panel-default">
+			<div class="panel-heading"><h4>Личные данные</h4></div>
+			<table class="list-group col-md-offset-1">
+                <tr>
+                    <td>Группа</td><td>{{ d_stud[7] }}</td>
+                </tr>
+                <tr>
+				    <td>Имя</td><td>{{ d_stud[1] }}</td>
+                </tr>
+                <tr>
+                    <td>Фамилия</td><td>{{ d_stud[2] }}</td>
+                </tr>
+                <tr>
+                    <td>Отчество</td><td>{{ d_stud[3] }}</td>
+                </tr>
+                <tr>
+                    <td>Пол</td><td>{% if d_stud[4] == 1 %}{{ 'Мужской' }}{% else %}{{ 'Женский' }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <td>Дата рождения</td><td>{{ d_stud[5] }}</td>
+                </tr>
+                <tr>
+                    <td>Коротко о {% if d_stud[4] == 1 %}{{ 'нем' }}{% else %}{{ 'ней' }}{% endif %}</td><td>{{ d_stud[6] }}</td>
+                </tr>
+			</table>
+		</div>
+	</div>
+  </div>
+    <hr>
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h4>Перечень индивидуальных достижений</h4></div>
+            <table class="table">
+                <thead>
+                    <tr align="center">
+                        <th>#</th>
+                        <th>Изображение</th>
+                        <th>Текст</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{ d_port }}
+                    {% for port in d_port %}
+                    <tr align="center">
+                            <td>{{ port[0] }}</td>
+                            <td><img src="{{ url_for('download', filename=port[2]) }}"></td>
+                            <td>{{ port[1] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

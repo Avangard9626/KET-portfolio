@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div class="col-md-4 col-md-offset-4">
+        <form action="{{ url_for('add_info') }}" method=post class=add-info>
+            <div class="form-group">
+                <label for="group_name">Группа</label>
+                <input type="text" class="form-control" id="group_name" name="group_name" placeholder="Имя">
+            </div>
+            <div class="form-group">
+                <label for="first_name">Имя</label>
+                <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Имя">
+            </div>
+            <div class="form-group">
+                <label for="second_name">Фамилия</label>
+                <input type="text" class="form-control" id="second_name" name="second_name" placeholder="Фамилия">
+            </div>
+            <div class="form-group">
+                <label for="third_name">Отчество</label>
+                <input type="text" class="form-control" id="third_name" name="third_name" placeholder="Отчество">
+            </div>
+            <div class="form-group">
+                <label for="sex">Пол</label><br>
+                Мужской <input id="sex" type=radio name=sex value=1> Женский <input type=radio name=sex value=0>
+            </div>
+            <div class="form-group">
+                <label for="birthday">День рождения</label>
+                <input type="date" class="form-control" id="birthday" name="birthday" placeholder="День рождения">
+            </div>
+            <div class="form-group">
+                <label for="about_me">Кратко обо мне</label>
+                <input type="text" class="form-control" id="about_me" name="about_me" placeholder="Кратко обо мне">
+            </div>
+            <div class="form-group">
+                <label for="file">Изображение</label>
+                <input type="file" id="file">
+            </div>
+            <button type="submit" class="btn btn-default">Добавить информацию</button>
+        </form>
+    </div>
+{% endblock %}
