@@ -1,8 +1,13 @@
 # coding=utf-8
-# Blog v 0.1
+# Portfolio v 0.2
 import random
 import sqlite3
 import os
+
+import flask_login
+from flask_wtf import Form
+from wtforms import TextField
+from wtforms.validators import DataRequired, Email
 from contextlib import closing
 
 from flask import Flask, render_template, g, request, url_for, session, flash, send_from_directory, current_app
@@ -27,6 +32,13 @@ def init_db():
         with app.open_resource('schema.sql', mode='r') as f:
             db.cursor().executescript(f.read())
         db.commit()
+
+
+class RegisterForm(Form):
+    email = TextField('Email address', [DataRequired(), Email()])
+    login = TextField('login', validators = [DataRequired()])
+    password = TextField('pass', validators = [DataRequired()])
+
 
 
 @app.before_request
@@ -80,6 +92,17 @@ def registration():
         return redirect(url_for('authorisation'))
     else:
         return render_template('registration.html')
+
+
+#course register
+'''@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegisterForm(request.form)
+    if form.validate_on_submit():
+        user = User(email = form.email.data, username = form.username.data, password = generate_password_hash(form.password.data))
+        return redirect(url_for('authorisation'))
+    return render_template('register.html', form = form)
+'''
 
 
 @app.route('/admin/students/all')
